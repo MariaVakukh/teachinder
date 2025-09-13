@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teachinder</title>
+    <link rel="stylesheet" type="text/css" href="lab1.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="wrap-main">
+            <header>
+                <h1 class="name">Teachinder</h2>
+                    <div class="search">
+                        <input type=text, class="search-field" , placeholder="Name, note or age to search">
+                        <button class="search-button">Search</button>
+                    </div>
+            </header>
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li>Teachers</li>
+                    <li>Statistics</li>
+                    <li>Favorites</li>
+                    <li>About</li>
+                </ul>
+                <button class="add-button" onclick="document.getElementById('add-teacher').showModal()">Add
+                    teacher</button>
+            </nav>
+            <hr>
+            <div class="title">
+                <h2>Top Teachers</h2>
+            </div>
+            <section>
+                <div class="filter-bar">
+                    <div class="fb-el">
+                        <label>Age</label>
+                        <select>
+                            <option>18-31</option>
+                            <option>32-45</option>
+                            <option>46-60</option>
+                            <option>60+</option>
+                        </select>
+                    </div>
+
+                    <div class="fb-el">
+                        <label>Region</label>
+                        <select>
+                            <option>Europe</option>
+                            <option>Asia</option>
+                            <option>America</option>
+                            <option>Africa</option>
+                        </select>
+                    </div>
+                    <div class="fb-el">
+                        <label>Sex</label>
+                        <select>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="fb-el">
+                        <input type="checkbox"> <label class="check">Only with photo</label>
+                    </div>
+                    <div class="fb-el">
+                        <input type="checkbox"> <label class="check">Only favorites</label>
+                    </div>
+                </div>
+
+                <div class="teachers-grid" onclick="document.getElementById('ihor').showModal()">
+                    <div class="teather-card">
+                        <img src="teachers photo/ua.png">
+                        <p class="name">Ihor<br> Tkachuk</p>
+                        <p class="subj">Chemistry</p>
+                        <p class="country">Ukraine</p>
+                    </div>
+
+                    <div class="teather-card">
+                        <img src="teachers photo/ind.png">
+                        <p class="name">Pragg<br> Rameshbabu</p>
+                        <p class="subj">Chess</p>
+                        <p class="country">India</p>
+                    </div>
+
+                    <div class="teather-card">
+                        <div class="star"></div>
+                        <img src="teachers photo/den.png">
+                        <p class="name">Floor<br> Jansen</p>
+                        <p class="subj">Vocal</p>
+                        <p class="country">Denmark</p>
+                    </div>
+
+                    <div class="teather-card">
+                        <img src="teachers photo/belg.png">
+                        <p class="name">John<br> Burke</p>
+                        <p class="subj">Computer Science</p>
+                        <p class="country">Belgium</p>
+                    </div>
+
+                    <div class="teather-card">
+                        <div class="star"></div>
+                        <img src="teachers photo/china.png">
+                        <p class="name">Ari<br> Tang</p>
+                        <p class="subj">Biology</p>
+                        <p class="country">China</p>
+                    </div>
+
+                    <div class="teather-card">
+                        <img src="teachers photo/br-f.png">
+                        <p class="name">Rachel<br> Andrew</p>
+                        <p class="subj">Medicine</p>
+                        <p class="country">UK</p>
+                    </div>
+
+                    <div class="teather-card">
+                        <img src="teachers photo/bel.png">
+                        <p class="name">Anna <br>Muzychuk</p>
+                        <p class="subj">Chess</p>
+                        <p class="country">Belarus</p>
+                    </div>
+
+                    <div class="teather-card">
+                        <img src="teachers photo/pol.png">
+                        <p class="name">Radoslaw<br> Ljuboevic</p>
+                        <p class="subj">Physics</p>
+                        <p class="country">Poland</p>
+                    </div>
+                </div>
+            </section>
+
+
+            <dialog id="add-teacher">
+                <div class="dialog-header">
+                    Add Teacher
+                    <button onclick="document.getElementById('add-teacher').close()">✕</button>
+                </div>
+                <form class="form">
+                    <label class="row">
+                        Name
+                        <input type="text" placeholder="Enter name" />
+                    </label>
+
+                    <label class="row">
+                        Speciality
+                        <select>
+                            <option>Mathematics</option>
+                            <option>Physics</option>
+                            <option>Chemistry</option>
+                        </select>
+                    </label>
+
+                    <label class="row">
+                        Country
+                        <select>
+                            <option>Ukraine</option>
+                            <option>Poland</option>
+                            <option>Germany</option>
+                        </select>
+                    </label>
+
+                    <label class="row">
+                        City
+                        <input type="text" />
+                    </label>
+
+                    <label class="row">
+                        Email
+                        <input type="email" />
+                    </label>
+
+                    <label class="row">
+                        Phone
+                        <input type="tel" />
+                    </label>
+
+                    <label class="row">
+                        Date of birth
+                        <input type="date" />
+                    </label>
+
+                    <div class="radio-group row">
+                        <label>Sex</label>
+                        <label>Male</label><input type="radio" name="sex">
+                        <label>Female</label><input type="radio" name="sex">
+                    </div>
+
+                    <div class="color row">
+                        <label> Background color</label>
+                        <input type="color" />
+                    </div>
+
+                    <label class="row">
+                        Notes (optional)
+                        <textarea></textarea>
+                    </label>
+
+                    <button type="submit" class="add-btn full">Add</button>
+                </form>
+
+            </dialog>
+            <dialog id="ihor">
+                <div class="dialog-header">
+                    Teacher Info
+                    <button onclick="document.getElementById('ihor').close()">✕</button>
+                </div>
+                <div class="dialog-content">
+                    <div class="short-info">
+                        <img src="teachers photo/ua.png" alt="Teacher photo">
+                        <div class="dialog-info">
+                            <div class="name-star">
+                                <h2>Ihor Tkachuk</h2>
+                                <h2 id="fav">☆</h2>
+                            </div>
+                            <p id="sub"><b>Chemistry</b></p>
+                            <p>Kyiv, Ukraine</p>
+                            <p>35, Male</p>
+                            <p><a href="mailto:ihor_tkachuk@domain.com">ihor_tkachuk@domain.com</a></p>
+                            <p>+380964993252</p>
+                        </div>
+                    </div>
+                    <div class="dialog-footer">
+                        Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Ab autem consectetur culpa cumque,
+                        distinctio dolor dolore doloren doloremque ea explicabo facilis nam nesciunt nisi pariatur
+                        perspiciatis porro quis similique temporibus veniam veritatis? A ab ad, aliquam amet consequatur
+                        cupiditate debitis deserunt doloribus dolorum earum eius eos minus nostrum odit omnis
+                        perferendis...
+                    </div>
+                    <a href="#">toggle map</a>
+                </div>
+            </dialog>
+
+
+            <hr>
+            <div class="title">
+                <h2>Statistics</h2>
+            </div>
+            <section class="stat-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Speciality</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Nationality</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Daisy Alexander</td>
+                            <td>Chemistry</td>
+                            <td>28</td>
+                            <td>Female</td>
+                            <td>Vietnam</td>
+                        </tr>
+                        <tr>
+                            <td>Julia Bradley</td>
+                            <td>Math</td>
+                            <td>26</td>
+                            <td>Female</td>
+                            <td>USA</td>
+                        </tr>
+                        <tr>
+                            <td>Rita Hart</td>
+                            <td>Art</td>
+                            <td>41</td>
+                            <td>Female</td>
+                            <td>Ireland</td>
+                        </tr>
+                        <tr>
+                            <td>Jonathan Jacobs</td>
+                            <td>Math</td>
+                            <td>32</td>
+                            <td>Male</td>
+                            <td>England</td>
+                        </tr>
+                        <tr>
+                            <td>Nathaniel White</td>
+                            <td>Computer Science</td>
+                            <td>37</td>
+                            <td>Male</td>
+                            <td>Austria</td>
+                        </tr>
+                        <tr>
+                            <td>Frank Medina</td>
+                            <td>English</td>
+                            <td>43</td>
+                            <td>Male</td>
+                            <td>Italy</td>
+                        </tr>
+                        <tr>
+                            <td>Ella Curtis</td>
+                            <td>Chess</td>
+                            <td>34</td>
+                            <td>Female</td>
+                            <td>USA</td>
+                        </tr>
+                        <tr>
+                            <td>Claire Simmomns</td>
+                            <td>Art</td>
+                            <td>38</td>
+                            <td>Female</td>
+                            <td>Netherlands</td>
+                        </tr>
+                        <tr>
+                            <td>Benjamin Knight</td>
+                            <td>Biology</td>
+                            <td>44</td>
+                            <td>Male</td>
+                            <td>Scotland</td>
+                        </tr>
+                        <tr>
+                            <td>Norma Rose</td>
+                            <td>Statistics</td>
+                            <td>36</td>
+                            <td>Female</td>
+                            <td>France</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <hr>
+            <div class="title">
+                <h2>Favorites</h2>
+            </div>
+
+<div class="slider-container">
+    <div class="arrow left">&#10094;</div>
+
+    <div class="slider">
+        <div class="teather-card">
+            <img src="teachers photo/ua.png">
+            <p class="name">Ihor Tkachuk</p>
+            <p class="country">Ukraine</p>
+        </div>
+
+        <div class="teather-card">
+            <img src="teachers photo/ind.png">
+            <p class="name">Pragg Rameshbabu</p>
+            <p class="country">India</p>
+        </div>
+
+        <div class="teather-card">
+            <img src="teachers photo/den.png">
+            <p class="name">Floor Jansen</p>
+            <p class="country">Denmark</p>
+        </div>
+
+        <div class="teather-card">
+            <img src="teachers photo/belg.png">
+            <p class="name">John Burke</p>
+            <p class="country">Belgium</p>
+        </div>
+    </div>
+
+    <div class="arrow right">&#10095;</div>
+</div>
+            <hr>
+            <footer>
+                <p class="footer-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque facere, hic impedit itaque
+                    molestiae sit tempore?
+                    Ea in mollitia natus rerum voluptates. Ea ex excepturi facere tempora. Aliquid asperiores hic
+                    impedit iusto natus quaerat
+                    ratione sit? Culpa iusto optio voluptas voluptate. Enim eveniet fugit iure maiores molestiae,
+                    praesentium quia.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam eligendi illum in inventore ipsum
+                    odio officiis omnis
+                    quisquam sed tempora?Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque esse expedita
+                    id iusto mollitia,
+                    odit sint ullam veritatis vero?
+                </p>
+                <nav class="navbar">
+                    <ul class="nav-menu">
+                        <li>Teachers</li>
+                        <li>Statistics</li>
+                        <li>Favorites</li>
+                        <li>About</li>
+                    </ul>
+                    <button class="add-button">Add teacher</button>
+                </nav>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
