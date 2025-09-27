@@ -194,15 +194,19 @@ button:hover{
 
 .star {
     position: absolute;
-    top: -5px;
-    right: 20px;
-    width: 22px;
-    height: 22px;
+    top: 2px;
+    right: 45px;
+    width: 25px;
+    height: 25px;
     background: #ecec02;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 
                       68% 57%, 79% 91%, 50% 70%, 
                       21% 91%, 32% 57%, 2% 35%, 
                       39% 35%);
+}
+
+.star.hidden {
+    display: none;
 }
 
 .stat-table{
@@ -305,7 +309,7 @@ hr {
 dialog {
       border: none;
       box-shadow: 0 4px 20px hsla(150, 100%, 1%, 0.873);
-      max-width: 55%;
+      width: 55%;
       min-width: 580px;
       padding: 0;
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
@@ -367,6 +371,8 @@ dialog {
     position: absolute;
     right: 0px;
     top: -15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .name-star h2 {
@@ -401,10 +407,14 @@ a {
     text-decoration: underline;
 }
 
+#add-teacher{
+    width: 50%;
+}
+
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px 20px;
+  gap: 8px 15px;
   padding: 20px;
 }
 
@@ -426,7 +436,7 @@ a {
 }
 
 .form textarea {
-  min-height: 90px;
+  min-height: 70px;
   resize: vertical;
 }
 
@@ -475,6 +485,10 @@ a {
 @media screen and (max-width: 1220px) {
     .wrap-main{
         max-width: 900px;
+
+    }
+    #fav{
+        font-size: 30px;
     }
 }
 
