@@ -1,9 +1,17 @@
 import { task1, task2, task3, task4, task5 } from "./lab2.js";
 import { randomUserMock, additionalUsers } from "./FE4U-Lab2-mock.js";
+import { users } from "./lab4.js";
 
-const users = task1(randomUserMock, additionalUsers);
+
+/* const users = task1(randomUserMock, additionalUsers);
 const validatedUsers = task2(users).valid;
+ */
 
+
+const AllUsers = task1(users);
+const validatedUsers = task2(AllUsers).valid;
+
+/* console.log(validatedUsers.length) */
 
 const grid = document.querySelector('.teachers-grid');
 const slider = document.querySelector(".slider");
@@ -12,6 +20,11 @@ function createTeacherCard(teacher) {
     const template = document.getElementById('teacher-card-template');
     const card = template.content.cloneNode(true);
     const cardEl = card.querySelector(".teather-card");
+
+
+    if (teacher.picture_large) {
+        card.querySelector(".teacher-photo").src = teacher.picture_large;
+    }
 
     card.querySelector(".teacher-photo").alt = `${teacher.full_name} photo`;
     card.querySelector('.name').innerHTML = teacher.full_name.replace(" ", "<br>");
@@ -76,6 +89,8 @@ function showTeacherDialog(teacher, star) {
         updateSlider();
     }
 
+
+
     dialog.showModal();
 }
 
@@ -112,12 +127,60 @@ function applyFilters() {
     const filters = getFilters();
     const filtered = task3(validatedUsers, filters);
     addTeachersToList(filtered);
+    buildStatisticsTable(filtered);
+
+}
+
+function resetFilters() {
+    const selects = document.querySelectorAll(".filter-select");
+    const checkboxes = document.querySelectorAll(".filter-checkbox");
+
+    selects.forEach(select => {
+        select.value = "All";
+    });
+
+    if (checkboxes[0]) {
+        checkboxes[0].checked = true;
+    }
+
+    const favCheckbox = document.getElementById("filter-favorites");
+    if (favCheckbox) {
+        favCheckbox.checked = false;
+    }
 }
 
 const filtersEls = document.querySelectorAll(".filter-select, .filter-checkbox");
 filtersEls.forEach(el => {
     el.onchange = applyFilters;
 });
+
+// ======== Pagination ========
+
+async function loadMoreUsers() {
+  try {
+    const response = await fetch("https://randomuser.me/api/?results=10");
+    const data = await response.json();
+    const newUsers = data.results;
+
+    const processed = task1(newUsers);
+    const validated = task2(processed).valid;
+
+    validatedUsers.push(...validated);
+
+    resetFilters();
+    addTeachersToList(validatedUsers);
+    buildStatisticsTable(validatedUsers);
+    updateSlider();
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+const nextBtn = document.querySelector(".pagin-next");
+if (nextBtn) {
+  nextBtn.onclick = loadMoreUsers;
+}
 
 //========== Statistics ============
 
@@ -173,11 +236,15 @@ function applySearch() {
     const query = searchInput.value.trim();
     if (!query) {
         addTeachersToList(validatedUsers);
+        resetFilters()
         return;
     }
 
     const results = task5(validatedUsers, query);
     addTeachersToList(results);
+    buildStatisticsTable(results);
+    resetFilters();
+
 }
 
 
@@ -189,12 +256,12 @@ searchInput.onkeydown = function (e) {
     }
 };
 
-// ======== Ащкь ==========
+// ======== Form ==========
 
 const addTeacherDialog = document.getElementById("add-teacher");
 const addTeacherForm = addTeacherDialog.querySelector("form");
 
-addTeacherForm.onsubmit = (e) => {
+addTeacherForm.onsubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(addTeacherForm);
@@ -218,14 +285,30 @@ addTeacherForm.onsubmit = (e) => {
     if (result.invalid.length > 0) {
         const reasons = result.invalid[0].reasons;
         alert("Failed to add teacher:\n" + reasons.join("\n"));
-    } else {
+        return;
+    } 
+    const validatedTeacher = result.valid[0];
 
-        validatedUsers.push(result.valid[0]);
+    try {
+        const response = await fetch("http://localhost:3000/users", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(validatedTeacher)
+        });
+
+        if (!response.ok) throw new Error("Failed sending to server");
+
+        validatedUsers.push(validatedTeacher);
         addTeachersToList(validatedUsers);
+        buildStatisticsTable(validatedUsers);
         updateSlider();
+        resetFilters();
 
         addTeacherDialog.close();
         addTeacherForm.reset();
+    } catch (error) {
+        console.error(error);
+        alert("Failed sending to server.");
     }
 };
 
@@ -245,9 +328,6 @@ buildStatisticsTable(validatedUsers);
 
 addTeachersToList(validatedUsers);
 updateSlider();
-
-
-
 
 
 

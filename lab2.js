@@ -1,7 +1,9 @@
+
 import { randomUserMock, additionalUsers } from "./FE4U-Lab2-mock.js";
+/* import { users} from "./lab4.js"; */
 
 
-export function task1(arr1, arr2) {
+export function task1(arr1) {
   const courses = ["Mathematics", "Physics", "English", "Computer Science", "Dancing", "Chess", "Biology", "Chemistry",
     "Law", "Art", "Medicine", "Statistics"];
   let formattedUsers = arr1.map(
@@ -32,7 +34,9 @@ export function task1(arr1, arr2) {
     }
   );
 
-  let allFormattedUsers = [...formattedUsers, ...arr2]
+/*   let allFormattedUsers = [...formattedUsers, ...additionalUsers]; */
+  let allFormattedUsers = [...formattedUsers];
+
 
   function generateId() {
     return `${Math.floor(10_000_000_000 + Math.random() * 9_000_000_00000)}`;
@@ -160,8 +164,6 @@ const validatedUsers = task2(formatUserList);
 
 /*console.log("Valid:", validatedUsers.valid);
 console.log("Invalid:", validatedUsers.invalid);
-fs.writeFileSync("filtered.json", JSON.stringify(result.valid, null, 2), "utf-8");
-
  */
 
 
@@ -254,5 +256,6 @@ function  task6(objects, f) {
 
 const findPercentage = task6(validatedUsers.valid, p => p.gender == "Female");
 
-console.log(findPercentage);
-
+/* const jsonString = JSON.stringify(users, null, 2);
+fs.writeFileSync("users.json", jsonString, "utf-8");
+console.log(users.length) */

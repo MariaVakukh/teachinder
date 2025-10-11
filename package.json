@@ -1,8 +1,17 @@
 {
+  "name": "my-project",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start-server": "json-server --watch users.json --port 3000 --static ./"
+
+  },
   "dependencies": {
     "express": "^5.1.0",
     "i18n-iso-countries": "^7.14.0",
-    "libphonenumber-js": "^1.12.18",
-    "require": "^2.4.20"
+    "libphonenumber-js": "^1.12.18"
+  },
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.3"
   }
 }
